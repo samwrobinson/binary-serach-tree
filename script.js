@@ -73,6 +73,20 @@ function minValue(node) {
     return current.data;
 }
 
+function findValue(node, value) {
+    if (node === null) {
+        return null;
+    }
+
+    if (value < node.data) {
+        return findValue(node.left, value);
+    } else if (value > node.data) {
+        return findValue(node.right, value);
+    }
+
+    return node;
+}
+
 function removeDupes(array) {
     let curr = null;
     let next = null;
@@ -148,6 +162,16 @@ function merge(leftHalf, rightHalf) {
     return sortedArray;
 }
 
+function randomArray() {
+    let array = []
+    
+    for (let i=0; i<100; i ++) {
+        let randomNum = parseInt(Math.round(Math.random() * 101));
+        array.push(randomNum)
+    }
+    return array;
+}
+
 const prettyPrint = (node, prefix = "", isLeft = true) => {
     if (node === null) {
       return;
@@ -162,11 +186,7 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   };
  
 
-const tree = new Tree([1,2,3,4,5,6,7])
+const tree = new Tree(randomArray())
 
 console.log(tree)
-prettyPrint(tree.root)
-insert(tree.root, 120)
-prettyPrint(tree.root)
-deleteNode(tree.root, 7)
 prettyPrint(tree.root)
